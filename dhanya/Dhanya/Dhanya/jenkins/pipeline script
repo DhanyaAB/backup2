@@ -1,0 +1,35 @@
+pipeline {
+   agent any
+    
+    parameters {
+        credentials credentialType: 'com.cloudbees.plugins.credentials.common.StandardCredentials', defaultValue: 'Dummy_AWS_Credential', description: '', name: 'newcr', required: false
+        string defaultValue: '', description: 'first string', name: 'str1', trim: false
+        string defaultValue: '', description: 'second string', name: 'str2', trim: false
+        string defaultValue: '', description: 'third string', name: 'str3', trim: false
+        string defaultValue: '', description: 'firth string', name: 'str4', trim: false
+        password defaultValue: '', description: 'first password', name: 'password1'
+        password defaultValue: '', description: 'second password', name: 'password2'
+    }
+    
+    environment {
+        name='value'
+    }
+    
+    stages {
+       stage('example') {
+           steps {
+           
+            withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'Dummy_AWS_Credential', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']]){
+         
+                script {
+                    def fields = env.getname()
+                        fields.each {
+                            key, value->print("{${key} : ${value}}")
+                    }
+                }
+            }
+        }
+    }
+}
+}
+   

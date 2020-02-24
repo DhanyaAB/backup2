@@ -1,0 +1,53 @@
+<aside class="sidebar shadow-sm"> 
+  <div class="sidebar-search pt-1 pb-1 pl-3 pr-3">
+    <input type="search" class="form-control rounded-pill" name="search" placeholder="Search ...">
+  </div>
+  <div class="sidebar-profile d-flex flex-column justify-content-center pt-5 pb-3">
+    <div class="picture-wrapper mb-4">
+      <div class="user-picture m-auto">
+        <img src="https://ya-webdesign.com/images/avatar-png-1.png" class="img-fluid" alt="" >
+      </div>
+    </div>
+    <div class="profile-details text-center pb-4">
+      <small class="text-uppercase role">{{loginname}}</small>
+    </div>
+  </div>
+  <div class="sidebar-menu pt-3 pb-3">
+    <div class="menu-header mt-4 mb-4">
+      <label for="jobs" style="color: red;">VIEWS: </label>
+      <select onclick="history.go(-1)" (change)="filterForeCasts($event.target.value)">
+        <!-- <a class="navbar-brand m-0 w-100" href="javascript:void(0)"> -->
+        <!-- <option value="select view">Select View</option> -->
+          <option *ngFor="let value of data" value={{value}}>
+            {{value}}
+          </option>
+          <!-- </a> -->
+        </select>
+    </div>
+
+    <div class="menu-header mt-4 mb-4">
+        <label for="jobs" style="color: red;">JOBS: </label>    <br>
+          <select class="active" (change)="CallHome1($event.target.value)">
+            <!-- <a class="navbar-brand m-0 w-100" href="javascript:void(0)"> -->
+
+            <option *ngFor="let value of data1; let i  = index;" value={{value}}>
+                {{value}}
+
+              </option>
+              <!-- </a> -->
+          </select>
+    </div>
+    <div class="menu-header mt-4 mb-4">
+        <ng-container *ngFor="let value of data2; let i  = index;">
+            <li >
+              <a [class.active]="selectedIndex4=== i" (click)="CallHome2(value.job,value.buildnumber,i)" style="cursor: pointer;" routerLinkActive="active">
+                <i class="fas fa-dot-circle fa-1x" [ngClass]="(value.result== 'SUCCESS')?'green':'red'"></i>
+                  <span [title]="value.buildnumber">Build Number {{value.buildnumber}} </span>
+                </a>
+            </li>
+            </ng-container>
+        </div>
+    <div class="view-source mb-3"></div>
+  </div>
+</aside>
+

@@ -1,0 +1,20 @@
+24/07/2019
+
+1.UI_review_July19.
+
+25/07/2019
+1.learning ec2
+
+
+26/07/2019
+1.tryied to get data from ec2.
+
+27 and 28 weekend
+
+29/07/2019
+
+1.Tried to connect to UI server through python script.
+
+30/07/2019
+
+1.Getting and posting data from UI server through python script

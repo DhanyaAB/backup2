@@ -1,0 +1,55 @@
+import boto3
+import time
+import json
+
+def call_EC2(Image_id, instance_type, key_pair, BlockDeviceMappings, tag_list, NetworkInterfaces):
+    obj = EC2(Image_id, instance_type, key_pair, BlockDeviceMappings, tag_list, NetworkInterfaces)
+    return obj
+
+class EC2:
+    def __init__(self, Image_id = None, instance_type = None, key_pair = None, BlockDeviceMappings = None, tag_list = None,NetworkInterfaces = None, instance_id = None):
+        self.Image_id = Image_id
+        self.instance_type = instance_type
+        self.key_pair = key_pair
+        self.BlockDeviceMappings = BlockDeviceMappings
+        self.tag_list = tag_list
+        self.NetworkInterfaces = NetworkInterfaces
+        self.instance_id = instance_id
+        self.client = boto3.resource("ec2", region_name = 'ap-south-1')
+        self.Ec2 = boto3.client("ec2", region_name = 'ap-south-1')
+
+    def create_instance(self):
+        new_instance = self.client.create_instances(ImageId = self.Image_id, MinCount = 1, MaxCount = 1, InstanceType = self.instance_type, KeyName = self.key_pair, BlockDeviceMappings = self.BlockDeviceMappings, NetworkInterfaces = self.NetworkInterfaces)
+        instance_id = new_instance[0].instance_id
+        instance = self.client.Instance(instance_id)
+        instance.wait_until_running()
+        d = {}
+        time.sleep(30)
+        d['Instance_Id'] = instance_id
+        d['Public_ip'] = instance.public_ip_address
+        self.Ec2.create_tags(Resources = [instance_id], Tags = self.tag_list)
+        d['status'] = instance.state['Name']
+        print 'Sucessfully created Instance'
+        return d
+
+def Terminate_instance(instanceid):
+    Ec2 = boto3.client("ec2",region_name='ap-south-1')
+    Ec2.terminate_instances(InstanceIds = [instanceid])
+    return 'success'
+
+if  __name__ == '__main__':
+                                                                                                                             1,3           Top
+    Image_id ='ami-0c73214459ce29ea8'
+    key_pair = 'ASM_PolyLogix'
+    BlockDeviceMappings = [{"DeviceName" :'/dev/sda1', 'Ebs': {'VolumeSize': 30,'VolumeType': 'standard'}}]
+    NetworkInterfaces = [{'SubnetId':'subnet-6a72a303', 'DeviceIndex': 0, 'AssociatePublicIpAddress': True, 'Groups': ['sg-02ea584ebaa137687']}]
+    instance_type = 't2.medium'
+    tag_list = [{'Value': 'QA', 'Key': 'ChargeLine'}, {'Value': 'test_zentral', 'Key': 'Name'}, {'Value': 'Karthic Jayaraman and Ramesh Chandrasekar', 'Key': 'Owner'}]
+    Instance = EC2(Image_id, instance_type, key_pair, BlockDeviceMappings, tag_list, NetworkInterfaces)
+    D = Instance.create_instance()
+    print('success')
+    print(D)
+    #instance = EC2(instance_id = 'i-024914d2a7f873b46')
+    #print Instance.Terminate_instance()
+
+

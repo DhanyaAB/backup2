@@ -1,0 +1,17 @@
+<html>
+   <body>
+   <center>
+      <form action = '/employees/updated' method = 'POST'>
+        <fieldset>
+           <legend><h1>Edit employee Details...</h1></legend>
+
+                <p>{{ keys[0] }}:<input type = "text" name = "ename" required value="{{ values[0] }}"/></p>
+                <p>{{ keys[1] }}:<input type = "text" name = "_id" required value="{{ values[1] }}"/></p>
+                <p>{{ keys[2] }} :<input type = "text" name = "eid" required value="{{ values[2]}}"/></p>
+                <p>{{ keys[3] }}:<input type ="text" name = "esal" required value="{{ values[3] }}"/></p>
+                <p><input type = "submit" value = "submit" /></p>
+	    </fieldset>
+      </form>
+   </center>
+   </body>
+</html>

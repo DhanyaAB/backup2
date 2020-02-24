@@ -1,0 +1,6 @@
+django==2.0.8
+django-mongodb-engine==0.6.0
+pymongo==2.2.1
+pytz==2012d
+djangotoolbox==1.6.0
+sudo apt-get install git-core

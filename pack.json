@@ -1,0 +1,15 @@
+{
+
+"queries": {
+"win_file_events": {
+"query": "select * from processes;",
+"interval": 5,
+"platform": "windows",
+"version": "2.9.0",
+"description": "Processes",
+"value": "Processes"
+}
+},
+"tags":"Test1,Test2"
+
+}

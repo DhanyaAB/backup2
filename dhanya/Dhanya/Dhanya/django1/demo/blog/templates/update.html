@@ -1,0 +1,18 @@
+<html>
+	<body>
+		<form action="/update/{{form.id}}/" method='POST'>
+			{% csrf_token %}
+			<h4>Enter the details</h4>
+
+			<br>College_name:<input type='text' name='College_name' value="{{form.College_name}}"></br></div>
+
+			<br>Name_student:<input type='text' name='Name_student' value="{{form.Name_student}}"></br></div>
+
+			<br>USN:<input type='text' name='USN' value="{{form.USN }}"></br></div>
+
+			<br>Branch:<input type='text' name='Branch' value="{{form.Branch}}"></br></div>
+
+			<input type='submit' value='update'>
+		</form>
+	</body>
+</html>

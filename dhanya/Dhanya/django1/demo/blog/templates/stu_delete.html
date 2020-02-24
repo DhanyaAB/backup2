@@ -1,0 +1,10 @@
+<html>
+	<body>
+		<form action=" " method='POST'>
+			{% csrf_token %}
+			<h4>Are sure you want to delete the student id= "{{ id}}"?</h4>
+
+            <p><input type='submit' value='Yes'/> <button><a href="/complete" > No </a></p>
+		</form>
+	</body>
+</html>

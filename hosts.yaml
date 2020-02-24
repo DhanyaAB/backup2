@@ -1,0 +1,24 @@
+qa_clients_rhel:
+  hosts: [15.206.67.11]
+  vars: {ansible_python_interpreter: /usr/bin/python3, ansible_ssh_private_key_file: /home/ubuntu/ASM_PolyLogix.pem,
+    ansible_user: ec2-user}
+qa_clients_ubuntu:
+  hosts: [13.234.136.106]
+  vars: {ansible_python_interpreter: /usr/bin/python3, ansible_ssh_private_key_file: /home/ubuntu/ASM_PolyLogix.pem,
+    ansible_user: ubuntu}
+qa_clients_windows_2012:
+  hosts: [13.127.37.245]
+  vars: {ansible_connection: winrm, ansible_password: '!BU2fv5%56y', ansible_port: '5986',
+    ansible_user: Administrator, ansible_winrm_server_cert_validation: ignore}
+qa_clients_windows_2016:
+  hosts: [15.206.66.228]
+  vars: {ansible_connection: winrm, ansible_password: '4D8?EzNccdeJ.(uzN=Qn;6nDEiPkHMB.',
+    ansible_port: '5986', ansible_user: Administrator, ansible_winrm_server_cert_validation: ignore}
+qa_clients_windows_2019:
+  hosts: [13.232.198.26]
+  vars: {ansible_connection: winrm, ansible_password: 'pflZF$4sXh@@PhJYx2a9a?UAzcKhe6Tz',
+    ansible_port: '5986', ansible_user: Administrator, ansible_winrm_server_cert_validation: ignore}
+qa_servers:
+  hosts: [35.154.148.8]
+  vars: {ansible_python_interpreter: /usr/bin/python3, ansible_ssh_private_key_file: /home/ubuntu/ASM_PolyLogix.pem,
+    ansible_user: ubuntu}

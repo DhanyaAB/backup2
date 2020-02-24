@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+   <body>
+     <center>
+         <h2>Employee Details...</h2></br>
+             {% for row in result %}
+                 {{row}}</br>
+             {% endfor %}
+         <button><a href="/">INSERT</a></button>
+         <button><a href="/employees/1">EMPLOYEE DATA</a></button>
+         <button><a href="/employees/delete/">DELETE</a></button>
+         <button><a href="/employees/update/">UPDATE</a></button>
+     </center>
+   </body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE>
+<html>
+	<body>
+
+    		{% for com in c %}
+						{{com}}<br>
+			{% endfor %}
+
+
+		<button><a href="{% url 'add' %}">data insert</a></button>
+
+
+		<button><a href="/complete/">complete</a></button>
+		<button><a href="/data/{{c.id}}">data by id</a></button>
+		<button><a href="/complete/delete/{{id}}">delete by id</a></button>
+		<button><a href="/complete/edit/{{form.id}}">edit</a></button>
+
+	</body>
+
+</html>
